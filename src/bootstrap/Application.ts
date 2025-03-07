@@ -1,5 +1,6 @@
 import express from 'express';
 import { Express } from 'express';
+import { startup } from '../cli/Startup';
 
 export class Aplication {
     Server: Express
@@ -12,7 +13,7 @@ export class Aplication {
 
     public startServer() {
         this.Server.listen(this.port, () => {
-            console.log(`Example app listening on port ${this.port}`)
+            startup(this.port);
         })
     }
 }

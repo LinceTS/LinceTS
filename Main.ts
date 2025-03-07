@@ -1,4 +1,3 @@
-import express from 'express';
 import { Aplication } from "./src/bootstrap/Application";
 import { createContext } from './src/bootstrap/AppContext';
 

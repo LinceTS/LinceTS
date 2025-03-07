@@ -5,6 +5,5 @@ export class BeehiveCore {
 
     public static setContext(App: Aplication): void {
         BeehiveCore.Context = App;
-        console.log("Context ✅")
     }
 }

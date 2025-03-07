@@ -26,7 +26,10 @@
 	},
 	"homepage": "https://github.com/CoderAnchel/Beehive.TS#readme",
 	"dependencies": {
-		"express": "^4.21.2"
+		"chalk": "^5.4.1",
+		"express": "^4.21.2",
+		"figlet": "^1.8.0",
+		"gradient-string": "^3.0.0"
 	},
 	"devDependencies": {
 		"@types/express": "^5.0.0",
