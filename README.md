@@ -1,5 +1,5 @@
 # Beehive.TS
-
+![](assets/Beehive_logo.png)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Version](https://img.shields.io/badge/version-0.0.1-blue.svg)](https://github.com/CoderAnchel/Beehive.TS)
 
