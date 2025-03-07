@@ -1,1 +1,6 @@
-console.log("Welcome to Beehive.ts");
+import express from 'express';
+import { Aplication } from "./src/bootstrap/Application";
+import { createContext } from './src/bootstrap/AppContext';
+
+const App: Aplication = createContext(3000)
+App.startServer();

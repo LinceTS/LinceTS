@@ -2,9 +2,10 @@
 	"name": "beehive.ts",
 	"version": "0.0.1",
 	"description": "Beehive is a modern TypeScript-based backend framework built on top of Node.js, inspired by the best features of NestJS and Spring Boot. Designed specifically for microservices and distributed systems, it aims to provide a scalable, efficient, and developer-friendly foundation for building cloud-native applications.",
-	"main": "index.ts",
+	"type": "module",
+	"main": "Main.ts",
 	"scripts": {
-    "dev":"node Main.ts",
+		"dev": "tsx Main.ts",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"repository": {
@@ -23,5 +24,14 @@
 	"bugs": {
 		"url": "https://github.com/CoderAnchel/Beehive.TS/issues"
 	},
-	"homepage": "https://github.com/CoderAnchel/Beehive.TS#readme"
+	"homepage": "https://github.com/CoderAnchel/Beehive.TS#readme",
+	"dependencies": {
+		"express": "^4.21.2"
+	},
+	"devDependencies": {
+		"@types/express": "^5.0.0",
+		"@types/node": "^22.13.9",
+		"ts-node": "^10.9.2",
+		"tsx": "^4.19.3"
+	}
 }
