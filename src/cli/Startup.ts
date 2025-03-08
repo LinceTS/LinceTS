@@ -5,10 +5,10 @@ import { BeehiveCore } from "../core/Core";
 
 export function startup(port: number): void {
   console.log(
-    chalk.cyan(`
+    chalk.cyan(`d
                 ____            __    _
                / __ )___  ___  / /_  (_)   _____  ___
-              / __  / _ \\/ _ \\/ __ \\/ / | / / _ \\/ _ \\
+              / __  / _ \\/ _ \\/ __ \\/ / | / / _ \\/ _ \\d
              / /_/ /  __/  __/ / / / /| |/ /  __/  __/
             /_____/\\___/\\___/_/ /_/_/ |___/\\___/\\___/
     `)
@@ -39,6 +39,4 @@ export function startup(port: number): void {
   console.log(gradient.rainbow("            -----------------------------------------"));
   console.log(chalk.magenta("               🚀 Let’s build something amazing! 🚀"));
   console.log(gradient.rainbow("            -----------------------------------------"));
-
-  BeehiveCore.EntitiesControllInstance.showControllerEntities();
 }

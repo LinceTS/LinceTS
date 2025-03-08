@@ -1,4 +1,3 @@
-import { BeehiveCore } from './src/core/Core';
 import { Aplication } from "./src/bootstrap/Application";
 import { createContext } from "./src/bootstrap/AppContext";
 import { Route, Get, Post } from "./src/common/decorators/RestDecorators";
@@ -7,29 +6,11 @@ import "reflect-metadata";
 const App: Aplication = createContext(3000);
 App.startServer();
 
-@Route("/users2")
-class UserController {
-  @Get("/:id")
-  getUser(id: string) {
-    return { id, name: "Usuario" };
-  }
-
-  @Post("/createUser")
-  setUser(id: string) {
-    console.log("Creating user")
-  }
-}
-
-@Route("/users3")
-class UserController3 {
-  @Get("/:id")
-  getUser(id: string) {
-    return { id, name: "Usuario" };
-  }
-
-  @Post("/createUser")
-  setUser(id: string) {
-    console.log("Creating user")
+@Route("/beehive")
+class MainController {
+  @Get("/HelloWorld")
+  helloWorld() {
+    return "Hello World!!";
   }
 }
 
@@ -47,4 +28,4 @@ class UserController3 {
 //   const methodPath = Reflect.getMetadata("route:path", UserController.prototype, methodName);
 
 //   console.log(`${httpMethod} ${controllerPath}${methodPath}`); // Imprime: GET /users/:id
-// }
+//
