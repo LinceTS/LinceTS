@@ -1,6 +1,7 @@
 import chalk from "chalk";
 import figlet from "figlet";
 import gradient from "gradient-string";
+import { BeehiveCore } from "../core/Core";
 
 export function startup(port: number): void {
   console.log(
@@ -38,4 +39,6 @@ export function startup(port: number): void {
   console.log(gradient.rainbow("            -----------------------------------------"));
   console.log(chalk.magenta("               🚀 Let’s build something amazing! 🚀"));
   console.log(gradient.rainbow("            -----------------------------------------"));
+
+  BeehiveCore.EntitiesControllInstance.showControllerEntities();
 }

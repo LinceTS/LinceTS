@@ -29,7 +29,9 @@
 		"chalk": "^5.4.1",
 		"express": "^4.21.2",
 		"figlet": "^1.8.0",
-		"gradient-string": "^3.0.0"
+		"gradient-string": "^3.0.0",
+		"reflect-metadata": "^0.2.2",
+		"tsyringe": "^4.8.0"
 	},
 	"devDependencies": {
 		"@types/express": "^5.0.0",
