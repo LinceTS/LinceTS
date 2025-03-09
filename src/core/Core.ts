@@ -1,6 +1,7 @@
 import { Aplication } from "../bootstrap/Application";
 import { EntitiesControll } from "./EntitiesControl";
 import { startup } from '../cli/Startup';
+import { createEndpoints } from "./Server/Functions";
 
 export class BeehiveCore {
     private static Context: Aplication;
@@ -13,5 +14,6 @@ export class BeehiveCore {
     public static Startup() {
         startup(BeehiveCore.Context.port);
         BeehiveCore.EntitiesControllInstance.showControllerEntities();
+        createEndpoints(this.Context.Server);
     }
 }

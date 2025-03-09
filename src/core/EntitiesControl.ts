@@ -55,7 +55,9 @@ export class EntitiesControll {
 
         let instance = EntitiesControll.Routes.find(route => route.key === className);
 
-        let method: MethodRegistry<typeof obj> = {FullPath: controllPath + routeMethod, HttpMethod: httpMethod, MethodName: methodName, Instance: instance.instance}
+        let method: MethodRegistry<typeof obj> = {FullPath: controllPath + routeMethod, HttpMethod: httpMethod, MethodName: methodName, Instance: instance.instance};
+
+        EntitiesControll.RoutesMethods.push(method);
       }
 
       return buildedOutput.join();

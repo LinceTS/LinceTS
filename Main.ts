@@ -10,6 +10,7 @@ App.startServer();
 class MainController {
   @Get("/HelloWorld")
   helloWorld() {
+    console.log("opa opa")
     return "Hello World!!";
   }
 }
