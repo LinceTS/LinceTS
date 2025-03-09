@@ -1,7 +1,14 @@
 import { PetitionEntity } from './Entity';
 import { Express } from 'express';
+import "reflect-metadata";
+import { BeehiveCore } from '../Core';
+import { EntitiesControll } from '../EntitiesControl';
 
-export function createEndpoint(pet: PetitionEntity, Server: Express) {
+export function createEndpoints(pet: PetitionEntity, Server: Express) {
+    EntitiesControll.Routes.forEach(route => {
+
+    })
+
     switch(pet.Type){
         case "GET":
             createGetEndPoint(Server, pet.FullPath);

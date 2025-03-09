@@ -1,11 +1,10 @@
 import chalk from "chalk";
 import figlet from "figlet";
 import gradient from "gradient-string";
-import { BeehiveCore } from "../core/Core";
 
 export function startup(port: number): void {
   console.log(
-    chalk.cyan(`d
+    chalk.cyan(`
                 ____            __    _
                / __ )___  ___  / /_  (_)   _____  ___
               / __  / _ \\/ _ \\/ __ \\/ / | / / _ \\/ _ \\d

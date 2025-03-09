@@ -5,7 +5,7 @@ export function Route(path: string) {
   return function (target: any) {
     // Almacena metadatos en la clase
     Reflect.defineMetadata("route:path", path, target);
-    BeehiveCore.EntitiesControllInstance.addRouteClass(target.name, target);
+    BeehiveCore.EntitiesControllInstance.addRouteClass(target.name, target, new target());
   };
 }
 
