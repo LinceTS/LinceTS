@@ -34,6 +34,7 @@ function createGetEndPoint(Server: Express, FullPath: string, MethodName: string
 
     Server.get(FullPath, (req, res) => {
         const result = ClassInstance[MethodName](req.params);
+        console.log(req.params)
         res.send(result);
     });
 }

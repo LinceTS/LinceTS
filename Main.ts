@@ -1,6 +1,7 @@
 import { Aplication } from "./src/bootstrap/Application";
 import { createContext } from "./src/bootstrap/AppContext";
 import { Route, Get, Post } from "./src/common/decorators/RestDecorators";
+import { Param } from "./src/common/decorators/ParamDecoratos";
 import "reflect-metadata";
 
 const App: Aplication = createContext(3000);
@@ -9,11 +10,15 @@ App.startServer();
 @Route("/beehive")
 class MainController {
   @Get("/HelloWorld")
-  helloWorld() {
-    console.log("opa opa")
+  helloWorld(@Param("name") name: string, @Param("id") id: string) {
+    console.log("Hola, ",name)
     return "Hello World!!";
   }
 }
+
+
+
+
 
 // // Inspección de metadatos sin instanciar la clase
 // const controllerPath = Reflect.getMetadata("route:path", UserController);
