@@ -7,7 +7,7 @@ export function Param(metadataKey: string) {
       existingMetadata[parameterIndex] = metadataKey;
       Reflect.defineMetadata(metadataKey, existingMetadata, target, propertyKey);
     };
-}
+};
 
 export function PathVariable(metadataKey: string) {
     return function (target: any, propertyKey: string, parameterIndex: number) {
@@ -15,7 +15,7 @@ export function PathVariable(metadataKey: string) {
       existingMetadata[parameterIndex] = metadataKey;
       Reflect.defineMetadata(metadataKey, existingMetadata, target, propertyKey);
     };
-}
+};
 
 export function Header(metadataKey: string) {
     return function (target: any, propertyKey: string, parameterIndex: number) {
@@ -31,4 +31,4 @@ export function Query(metadataKey: string) {
       existingMetadata[parameterIndex] = metadataKey;
       Reflect.defineMetadata(metadataKey, existingMetadata, target, propertyKey);
     };
-}
+};

@@ -3,6 +3,7 @@ import { createContext } from "./src/bootstrap/AppContext";
 import { Route, Get, Post } from "./src/common/decorators/RestDecorators";
 import { Param } from "./src/common/decorators/ParamDecoratos";
 import "reflect-metadata";
+import { delay } from "tsyringe";
 
 const App: Aplication = createContext(3000);
 App.startServer();
@@ -15,6 +16,23 @@ class MainController {
     return "Hello World!!";
   }
 }
+
+@Route("/Ruta")
+class Prueba {
+    @Get("/HelloWorld")
+    getSaludo() {
+        return "Hola isma!";
+    }
+}
+
+
+
+
+
+
+
+
+
 
 
 
