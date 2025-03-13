@@ -30,3 +30,24 @@ export function Put(path: string) {
     Reflect.defineMetadata("route:path", path, target, propertyKey);
   };
 }
+
+export function Patch(path: string) {
+  return function (target: any, propertyKey: string) {
+    Reflect.defineMetadata("route:method", "PATCH", target, propertyKey);
+    Reflect.defineMetadata("route:path", path, target, propertyKey);
+  };
+}
+
+export function Delete(path: string) {
+  return function (target: any, propertyKey: string) {
+    Reflect.defineMetadata("route:method", "DELETE", target, propertyKey);
+    Reflect.defineMetadata("route:path", path, target, propertyKey);
+  };
+}
+
+export function Update(path: string) {
+  return function (target: any, propertyKey: string) {
+    Reflect.defineMetadata("route:method", "Update", target, propertyKey);
+    Reflect.defineMetadata("route:path", path, target, propertyKey);
+  };
+}

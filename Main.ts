@@ -1,6 +1,6 @@
 import { Aplication } from "./src/bootstrap/Application";
 import { createContext } from "./src/bootstrap/AppContext";
-import { Route, Get, Post } from "./src/common/decorators/RestDecorators";
+import { Route, Get, Post, Put, Patch, Delete, Update } from "./src/common/decorators/RestDecorators";
 import { Param } from "./src/common/decorators/ParamDecoratos";
 import "reflect-metadata";
 import { delay } from "tsyringe";
@@ -19,8 +19,28 @@ class MainController {
 
 @Route("/Ruta")
 class Prueba {
-    @Get("/HelloWorld")
+    @Post("/HelloWorld2")
     getSaludo() {
+        return "Hola isma!";
+    }
+
+    @Put("/HelloWorld2")
+    getSaludo2() {
+        return "Hola isma!";
+    }
+
+    @Patch("/HelloWorld2")
+    getSaludo3() {
+        return "Hola isma!";
+    }
+
+    @Delete("/HelloWorld2")
+    getSaludo4() {
+        return "Hola isma!";
+    }
+
+    @Update("/HelloWorld2")
+    getSaludo5() {
         return "Hola isma!";
     }
 }

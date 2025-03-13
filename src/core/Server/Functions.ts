@@ -5,7 +5,6 @@ import { EntitiesControll } from '../EntitiesControl';
 export function createEndpoints(Server: Express) {
     console.log(EntitiesControll.RoutesMethods);
     EntitiesControll.RoutesMethods.forEach(method => {
-
         switch(method.HttpMethod){
             case "GET":
                 createGetEndPoint(Server, method.FullPath, method.MethodName, method.Instance);
@@ -20,10 +19,10 @@ export function createEndpoints(Server: Express) {
                 createPachEndPoint(Server, method.FullPath, method.MethodName, method.Instance);
                 break;
             case "DELETE":
-                createPachEndPoint(Server, method.FullPath, method.MethodName, method.Instance);
+                createDeleteEndPoint(Server, method.FullPath, method.MethodName, method.Instance);
                 break;
             case "UPDATE":
-                createPachEndPoint(Server, method.FullPath, method.MethodName, method.Instance);
+                createUpdateEndPoint(Server, method.FullPath, method.MethodName, method.Instance);
                 break;
         }
     })
@@ -40,6 +39,8 @@ function createGetEndPoint(Server: Express, FullPath: string, MethodName: string
 }
 
 function createPostEndPoint(Server: Express, FullPath: string, MethodName: string, ClassInstance: any) {
+    console.log("POST Route Created and listening at: ",FullPath)
+
     Server.post(FullPath, (req, res) => {
         const result = ClassInstance[MethodName](req.params);
         res.send(result);
@@ -47,6 +48,9 @@ function createPostEndPoint(Server: Express, FullPath: string, MethodName: strin
 }
 
 function createPachEndPoint(Server: Express, FullPath: string, MethodName: string, ClassInstance: any) {
+    console.log("PATCH Route Created and listening at: ",FullPath)
+
+
     Server.patch(FullPath, (req, res) => {
 
     })
@@ -54,18 +58,24 @@ function createPachEndPoint(Server: Express, FullPath: string, MethodName: strin
 
 
 function createPutEndPoint(Server: Express, FullPath: string, MethodName: string, ClassInstance: any) {
+    console.log("PUT Route Created and listening at: ",FullPath)
+
     Server.put(FullPath, (req, res) => {
 
     })
 }
 
 function createUpdateEndPoint(Server: Express, FullPath: string, MethodName: string, ClassInstance: any) {
+    console.log("UPDATE Route Created and listening at: ",FullPath)
+
     Server.patch(FullPath, (req, res) => {
 
     })
 }
 
 function createDeleteEndPoint(Server: Express, FullPath: string, MethodName: string, ClassInstance: any) {
+    console.log("DELETE Route Created and listening at: ",FullPath)
+
     Server.delete(FullPath, (req, res) => {
 
     })

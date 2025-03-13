@@ -106,21 +106,23 @@ export class EntitiesControll {
           obj.prototype,
           methodName
         );
-        // Format for console output
-        let phrase = `\n                                NAME: ${chalk.blue(
-          methodName
-        )} | ${chalk.green(httpMethod)} ${chalk.yellow(
-          controllPath
-        )}${chalk.yellow(routeMethod)}`;
-        buildedOutput.push(phrase);
+        if(routeMethod) {
+          // Format for console output
+          let phrase = `\n                                NAME: ${chalk.blue(
+            methodName
+          )} | ${chalk.green(httpMethod)} ${chalk.yellow(
+            controllPath
+          )}${chalk.yellow(routeMethod)}`;
+          buildedOutput.push(phrase);
 
-        // Find the controller instance
-        let instance = EntitiesControll.Routes.find(route => route.key === className);
+          // Find the controller instance
+          let instance = EntitiesControll.Routes.find(route => route.key === className);
 
-        // Register the method in the global registry
-        let method: MethodRegistry<typeof obj> = {FullPath: controllPath + routeMethod, HttpMethod: httpMethod, MethodName: methodName, Instance: instance.instance};
+          // Register the method in the global registry
+          let method: MethodRegistry<typeof obj> = {FullPath: controllPath + routeMethod, HttpMethod: httpMethod, MethodName: methodName, Instance: instance.instance};
 
-        EntitiesControll.RoutesMethods.push(method);
+          EntitiesControll.RoutesMethods.push(method);
+        }
       }
 
       return buildedOutput.join();
