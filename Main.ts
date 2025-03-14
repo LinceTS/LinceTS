@@ -11,8 +11,7 @@ App.startServer();
 @Route("/beehive")
 class MainController {
   @Get("/HelloWorld")
-  helloWorld(@Param("name") name: string, @Param("id") id: string) {
-    console.log("Hola, ",name)
+  helloWorld() {
     return "Hello World!!";
   }
 }

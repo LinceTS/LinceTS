@@ -1,9 +1,10 @@
 import { Express } from 'express';
 import "reflect-metadata";
 import { EntitiesControll } from '../EntitiesControl';
+import chalk from "chalk";
 
 export function createEndpoints(Server: Express) {
-    console.log(EntitiesControll.RoutesMethods);
+    //console.log(EntitiesControll.RoutesMethods);
     EntitiesControll.RoutesMethods.forEach(method => {
         switch(method.HttpMethod){
             case "GET":
@@ -29,17 +30,16 @@ export function createEndpoints(Server: Express) {
 }
 
 function createGetEndPoint(Server: Express, FullPath: string, MethodName: string, ClassInstance: any) {
-    console.log("GET Route Created and listening at: ",FullPath)
-
+    //console.log(chalk.blue(`GET Route Created and listening at:  ${FullPath}`));
     Server.get(FullPath, (req, res) => {
         const result = ClassInstance[MethodName](req.params);
-        console.log(req.params)
+
         res.send(result);
     });
 }
 
 function createPostEndPoint(Server: Express, FullPath: string, MethodName: string, ClassInstance: any) {
-    console.log("POST Route Created and listening at: ",FullPath)
+    //console.log(chalk.blue(`POST Route Created and listening at:  ${FullPath}`));
 
     Server.post(FullPath, (req, res) => {
         const result = ClassInstance[MethodName](req.params);
@@ -48,7 +48,7 @@ function createPostEndPoint(Server: Express, FullPath: string, MethodName: strin
 }
 
 function createPachEndPoint(Server: Express, FullPath: string, MethodName: string, ClassInstance: any) {
-    console.log("PATCH Route Created and listening at: ",FullPath)
+    //console.log(chalk.blue(`PATCH Route Created and listening at:  ${FullPath}`));
 
 
     Server.patch(FullPath, (req, res) => {
@@ -58,7 +58,7 @@ function createPachEndPoint(Server: Express, FullPath: string, MethodName: strin
 
 
 function createPutEndPoint(Server: Express, FullPath: string, MethodName: string, ClassInstance: any) {
-    console.log("PUT Route Created and listening at: ",FullPath)
+    //console.log(chalk.blue(`PUT Route Created and listening at:  ${FullPath}`));
 
     Server.put(FullPath, (req, res) => {
 
@@ -66,7 +66,7 @@ function createPutEndPoint(Server: Express, FullPath: string, MethodName: string
 }
 
 function createUpdateEndPoint(Server: Express, FullPath: string, MethodName: string, ClassInstance: any) {
-    console.log("UPDATE Route Created and listening at: ",FullPath)
+    //console.log(chalk.blue(`UPDATE Route Created and listening at:  ${FullPath}`));
 
     Server.patch(FullPath, (req, res) => {
 
@@ -74,7 +74,7 @@ function createUpdateEndPoint(Server: Express, FullPath: string, MethodName: str
 }
 
 function createDeleteEndPoint(Server: Express, FullPath: string, MethodName: string, ClassInstance: any) {
-    console.log("DELETE Route Created and listening at: ",FullPath)
+    //console.log(chalk.blue(`DELETE Route Created and listening at:  ${FullPath}`));
 
     Server.delete(FullPath, (req, res) => {
 

@@ -47,7 +47,7 @@ export function Delete(path: string) {
 
 export function Update(path: string) {
   return function (target: any, propertyKey: string) {
-    Reflect.defineMetadata("route:method", "Update", target, propertyKey);
+    Reflect.defineMetadata("route:method", "UPDATE", target, propertyKey);
     Reflect.defineMetadata("route:path", path, target, propertyKey);
   };
 }
