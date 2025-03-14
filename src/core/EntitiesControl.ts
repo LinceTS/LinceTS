@@ -11,9 +11,7 @@
  */
 import "reflect-metadata";
 import chalk from "chalk";
-import figlet from "figlet";
-import gradient from "gradient-string";
-import { BeehiveCore } from "./Core";
+import { ParamDeclaration } from "../common/decorators/ParamDecoratos";
 
 /**
  * Interface representing a registered entity in the system.
@@ -36,13 +34,17 @@ export interface EntityRegistry<T> {
  */
 export interface MethodRegistry<T> {
   /** The complete URL path to the endpoint */
-    FullPath: string;
-    /** The HTTP method (GET, POST, etc.) */
-    HttpMethod: string;
-    /** The method name in the controller */
-    MethodName: string;
-    /** Reference to the controller instance */
-    Instance: T;
+  FullPath: string;
+  /** The HTTP method (GET, POST, etc.) */
+  HttpMethod: string;
+  /** The method name in the controller */
+  MethodName: string;
+  /** Reference to the controller instance */
+  Instance: T;
+  /** Params declaration */
+  Params: Array<ParamDeclaration>;
+  /** Querys declaration */
+  Querys: Array<ParamDeclaration>;
 }
 
 /**
@@ -50,14 +52,6 @@ export interface MethodRegistry<T> {
  * @interface ParamRegistry
  *
  */
-export interface ParamRegistry {
-  /**Type of Param*/
-  type: "QUERY" | "PARAM" | "BODY";
-  /**Param number ()*/
-  paramName: string;
-  /**Param number ()*/
-  order: number;
-}
 
 /**
  * Main controller for managing API route registration and discovery.
@@ -70,8 +64,9 @@ export class EntitiesControll {
   public static Routes: Array<EntityRegistry<any>> = [];
   /** Static registry of all controller methods */
   public static RoutesMethods: Array<MethodRegistry<any>> = [];
+  public static MethodParam: Array<ParamDeclaration> = [];
 
-    /**
+  /**
    * Registers a new controller class in the routing system.
    *
    * @param keyI Unique identifier for the controller
@@ -80,17 +75,17 @@ export class EntitiesControll {
    * @returns void
    */
   public addRouteClass(keyI: string, objI: Object, instanceI: any): void {
-    EntitiesControll.Routes.push({ key: keyI, obj: objI, instance:  instanceI});
+    EntitiesControll.Routes.push({ key: keyI, obj: objI, instance: instanceI });
   }
 
-    /**
+  /**
    * Displays all registered controllers and their methods in the console.
    * This method is primarily used for debugging and development purposes.
    *
    * @returns void
    */
   public showControllerEntities(): void {
-        /**
+    /**
      * Helper function to iterate through and display controller methods.
      * Also registers each method in the RoutesMethods registry.
      *
@@ -115,31 +110,73 @@ export class EntitiesControll {
           obj.prototype,
           methodName
         );
+
         let routeMethod: string = Reflect.getMetadata(
           "route:path",
           obj.prototype,
           methodName
         );
-        if(routeMethod) {
-          // Format for console output
-          let phrase = `\n                                NAME: ${chalk.blue(
-            methodName
-          )} | ${chalk.green(httpMethod)} ${chalk.yellow(
-            controllPath
-          )}${chalk.yellow(routeMethod)}`;
-          buildedOutput.push(phrase);
 
+        // Obtener los metadatos para el parámetro "name"
+        let nameMetadata = Reflect.getOwnMetadata(
+          "name",
+          obj.prototype,
+          methodName
+        );
+
+        if (routeMethod) {
           // Find the controller instance
-          let instance = EntitiesControll.Routes.find(route => route.key === className);
+          let instance = EntitiesControll.Routes.find(
+            (route) => route.key === className
+          );
 
           // Register the method in the global registry
-          let method: MethodRegistry<typeof obj> = {FullPath: controllPath + routeMethod, HttpMethod: httpMethod, MethodName: methodName, Instance: instance.instance};
+          let method: MethodRegistry<typeof obj> = {
+            FullPath: controllPath + routeMethod,
+            HttpMethod: httpMethod,
+            MethodName: methodName,
+            Instance: instance.instance,
+            Params: [],
+            Querys: [],
+          };
+
+          // Filtrar los parámetros que coinciden con este método (target, propertyKey)
+          // y que son de tipo "@Param"
+          method.Params = EntitiesControll.MethodParam.filter(
+            (param) =>
+              param.type === "@Param" &&
+              param.propertyKey === methodName &&
+              param.target === obj.prototype
+          );
+
+          // Filtrar los parámetros que coinciden con este método (target, propertyKey)
+          // y que son de tipo "@Query"
+          method.Querys = EntitiesControll.MethodParam.filter(
+            (param) =>
+              param.type === "@Query" &&
+              param.propertyKey === methodName &&
+              param.target === obj.prototype
+          );
+
+            // Format for console output
+            let phrase = `
+                        ${chalk.green('Method:')} ${chalk.blue(methodName)}
+                        ${chalk.green('HTTP Method:')} ${chalk.yellow(httpMethod)}
+                        ${chalk.green('Full Path:')} ${chalk.yellow(controllPath + routeMethod)}
+                        ${chalk.green('Querys:')} ${chalk.magenta(method.Querys.map(param => {
+                          return `@Querys ${param.paramKey}`
+                        }).join(', '))}
+                        ${chalk.green('Params:')} ${chalk.magenta(method.Params.map(param => {
+                          return `@Param ${param.paramKey}`
+                        }).join(', '))}
+            `;
+            buildedOutput.push(phrase);
 
           EntitiesControll.RoutesMethods.push(method);
         }
       }
 
-      return buildedOutput.join();
+      return buildedOutput.join("");
     };
     // Iterate through all registered controllers
     EntitiesControll.Routes.forEach((object, i) => {
@@ -156,7 +193,12 @@ export class EntitiesControll {
                   object.obj.name
                 )} | ROUTE: ${chalk.yellow(controllerPath)}
                 - METHODS:
-                    ${iterateMethods(object.obj, methodNames, controllerPath, object.obj.name)}
+                    ${iterateMethods(
+                      object.obj,
+                      methodNames,
+                      controllerPath,
+                      object.obj.name
+                    )}
             `);
     });
   }

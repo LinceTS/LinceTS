@@ -11,14 +11,14 @@ App.startServer();
 class MainController {
   @Get("/HelloWorld")
   helloWorld(@Param("name") name: string) {
-    return "Hello World!!"+JSON.stringify(name);
+    return "Hello World!!"+name;
   }
 }
 
 @Route("/Ruta")
 class Prueba {
     @Post("/HelloWorld2")
-    getSaludo(@Param("name") name: string, @Query data: string, @Body body: string) {
+    getSaludo(@Param("name") name: string, @Query("data") data: string, @Body body: string) {
         console.log(name);
         console.log(data);
         console.log(body);

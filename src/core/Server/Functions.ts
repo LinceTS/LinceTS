@@ -33,7 +33,7 @@ function createGetEndPoint(Server: Express, FullPath: string, MethodName: string
     //console.log(chalk.blue(`GET Route Created and listening at:  ${FullPath}`));
     Server.get(FullPath, (req, res) => {
         const result = ClassInstance[MethodName](req.params);
-
+        //console.log(req.params);
         res.send(result);
     });
 }
