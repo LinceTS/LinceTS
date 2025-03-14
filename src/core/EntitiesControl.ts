@@ -46,6 +46,20 @@ export interface MethodRegistry<T> {
 }
 
 /**
+ * Interface representing a registered controller method.
+ * @interface ParamRegistry
+ *
+ */
+export interface ParamRegistry {
+  /**Type of Param*/
+  type: "QUERY" | "PARAM" | "BODY";
+  /**Param number ()*/
+  paramName: string;
+  /**Param number ()*/
+  order: number;
+}
+
+/**
  * Main controller for managing API route registration and discovery.
  * Uses reflection to map controller classes and methods to HTTP endpoints.
  *

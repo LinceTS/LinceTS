@@ -1,34 +1,23 @@
 import "reflect-metadata";
 import { BeehiveCore } from "../../core/Core";
 
-export function Param(metadataKey: string) {
-    return function (target: any, propertyKey: string, parameterIndex: number) {
-      const existingMetadata = Reflect.getOwnMetadata(metadataKey, target, propertyKey) || [];
-      existingMetadata[parameterIndex] = metadataKey;
-      Reflect.defineMetadata(metadataKey, existingMetadata, target, propertyKey);
-    };
-};
-
-export function PathVariable(metadataKey: string) {
-    return function (target: any, propertyKey: string, parameterIndex: number) {
-      const existingMetadata = Reflect.getOwnMetadata(metadataKey, target, propertyKey) || [];
-      existingMetadata[parameterIndex] = metadataKey;
-      Reflect.defineMetadata(metadataKey, existingMetadata, target, propertyKey);
-    };
-};
-
-export function Header(metadataKey: string) {
-    return function (target: any, propertyKey: string, parameterIndex: number) {
-      const existingMetadata = Reflect.getOwnMetadata(metadataKey, target, propertyKey) || [];
-      existingMetadata[parameterIndex] = metadataKey;
-      Reflect.defineMetadata(metadataKey, existingMetadata, target, propertyKey);
-    };
+export function Param(paramKey: string) {
+  return function (target: any, propertyKey: string, parameterIndex: number) {
+    console.log(paramKey);
+    console.log(target);
+    console.log(propertyKey);
+    console.log(parameterIndex);
+  };
 }
 
-export function Query(metadataKey: string) {
-    return function (target: any, propertyKey: string, parameterIndex: number) {
-      const existingMetadata = Reflect.getOwnMetadata(metadataKey, target, propertyKey) || [];
-      existingMetadata[parameterIndex] = metadataKey;
-      Reflect.defineMetadata(metadataKey, existingMetadata, target, propertyKey);
-    };
+export function Query(target: any, propertyKey: string, parameterIndex: number) {
+  console.log(target);
+  console.log(propertyKey);
+  console.log(parameterIndex);
+};
+
+export function Body(target: any, propertyKey: string, parameterIndex: number) {
+  console.log(target);
+  console.log(propertyKey);
+  console.log(parameterIndex);
 };

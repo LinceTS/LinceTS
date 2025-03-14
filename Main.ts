@@ -1,9 +1,8 @@
 import { Aplication } from "./src/bootstrap/Application";
 import { createContext } from "./src/bootstrap/AppContext";
 import { Route, Get, Post, Put, Patch, Delete, Update } from "./src/common/decorators/RestDecorators";
-import { Param } from "./src/common/decorators/ParamDecoratos";
+import { Body, Param, Query } from "./src/common/decorators/ParamDecoratos";
 import "reflect-metadata";
-import { delay } from "tsyringe";
 
 const App: Aplication = createContext(3000);
 App.startServer();
@@ -11,16 +10,19 @@ App.startServer();
 @Route("/beehive")
 class MainController {
   @Get("/HelloWorld")
-  helloWorld() {
-    return "Hello World!!";
+  helloWorld(@Param("name") name: string) {
+    return "Hello World!!"+JSON.stringify(name);
   }
 }
 
 @Route("/Ruta")
 class Prueba {
     @Post("/HelloWorld2")
-    getSaludo() {
-        return "Hola isma!";
+    getSaludo(@Param("name") name: string, @Query data: string, @Body body: string) {
+        console.log(name);
+        console.log(data);
+        console.log(body);
+        return `Hola ${name}!`;
     }
 
     @Put("/HelloWorld2")
