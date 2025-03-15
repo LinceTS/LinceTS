@@ -7,11 +7,18 @@ import "reflect-metadata";
 const App: Aplication = createContext(3000);
 App.startServer();
 
+@Route("/test")
+class controlador {
+    @Get("/name")
+    getName(@Param("tunombre") name: string, @Query("edad") edad: number,) {
+        return "Hola "+name+" Edad "+edad;
+    }
+}
 @Route("/beehive")
 class MainController {
   @Get("/HelloWorld")
-  helloWorld(@Param("name") name: string) {
-    return "Hello World!!"+name;
+  helloWorld(@Param("name") name: string,@Query("test") test: string,  @Param("apellido") apellido: string) {
+    return `Hello ${name} ${apellido} not gonna work ${test}`;
   }
 }
 
@@ -19,9 +26,6 @@ class MainController {
 class Prueba {
     @Post("/HelloWorld2")
     getSaludo(@Param("name") name: string, @Query("data") data: string, @Body body: string, @Param("name2") name2: string) {
-        console.log(name);
-        console.log(data);
-        console.log(body);
         return `Hola ${name}!`;
     }
 

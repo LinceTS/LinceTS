@@ -55,11 +55,43 @@ export class Logger {
     public static getRequestMessague(log: Logg): string {
         switch(log.Type) {
             case "Request":
-                return`${chalk.white.bgBlue.bold(' BEEHIVE ')}${chalk.blue.bgWhite.bold(" v"+version+" ")} [${chalk.green(log.Date.toISOString())}] ${chalk.yellow(log.Type)} - ${chalk.cyan(log.Position)} - ${chalk.magenta(log.Context)} - ${chalk.red(`${log.delay}ms`)}`;
-                break;
+                // Extraer el código de estado numérico para determinar el color
+                const statusCode = parseInt(log.Context.replace("Status: ", ""));
+
+                // Determinar el color según el rango del código de estado
+                let beehiveLogo;
+
+                if (statusCode >= 100 && statusCode < 200) {
+                    // Respuestas informativas (1xx) - Azul claro
+                    beehiveLogo = chalk.black.bgYellow.bold(" BEEHIVE ");
+                } else if (statusCode >= 200 && statusCode < 300) {
+                    // Respuestas exitosas (2xx) - Verde
+                    beehiveLogo = chalk.white.bgGreen.bold(" BEEHIVE ");
+                } else if (statusCode >= 300 && statusCode < 400) {
+                    // Redirecciones (3xx) - Amarillo
+                    beehiveLogo = chalk.white.bgBlue.bold(" BEEHIVE ");
+                } else if (statusCode >= 400 && statusCode < 500) {
+                    // Errores del cliente (4xx) - Rojo
+                    beehiveLogo = chalk.white.bgRed.bold(" BEEHIVE ");
+                } else if (statusCode >= 500 && statusCode < 600) {
+                    // Errores del servidor (5xx) - Magenta
+                    beehiveLogo = chalk.white.bgMagenta.bold(" BEEHIVE ");
+                } else {
+                    // Por defecto o código desconocido - Azul
+                    beehiveLogo = chalk.white.bgBlue.bold(" BEEHIVE ");
+                }
+
+                return `${beehiveLogo}${chalk.blue.bgWhite.bold(
+                    " v" + version + " "
+                )} [${chalk.green(log.Date.toISOString())}] ${chalk.yellow(
+                    log.Type
+                )} - ${chalk.cyan(log.Position)} - ${chalk.magenta(
+                    log.Context
+                )} - ${chalk.red(`${log.delay}ms`)}`;
+
             default:
+                // Para otros tipos de logs, mantener el color azul por defecto
                 return`${chalk.white.bgBlue.bold(' BEEHIVE ')}${chalk.blue.bgWhite.bold(" v"+version+" ")} [${chalk.green(log.Date.toISOString())}] ${chalk.yellow(log.Type)} - ${chalk.cyan(log.Position)} - ${chalk.magenta(log.Context)} - ${chalk.red(`${log.delay}ms`)}`;
-                break;
         }
     }
 }
