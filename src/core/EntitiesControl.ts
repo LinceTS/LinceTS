@@ -43,8 +43,6 @@ export interface MethodRegistry<T> {
   Instance: T;
   /** Params declaration */
   Params: Array<ParamDeclaration>;
-  /** Querys declaration */
-  Querys: Array<ParamDeclaration>;
 }
 
 /**
@@ -136,38 +134,30 @@ export class EntitiesControll {
             HttpMethod: httpMethod,
             MethodName: methodName,
             Instance: instance.instance,
-            Params: [],
-            Querys: [],
+            Params: []
           };
 
-          // Filtrar los parámetros que coinciden con este método (target, propertyKey)
-          // y que son de tipo "@Param"
-          method.Params = EntitiesControll.MethodParam.filter(
+            // Filtrar los parámetros que coinciden con este método (target, propertyKey)
+            // y que son de tipo "@Param"
+            method.Params = EntitiesControll.MethodParam.filter(
             (param) =>
-              param.type === "@Param" &&
               param.propertyKey === methodName &&
               param.target === obj.prototype
-          );
+            ).sort((a, b) => a.parameterIndex - b.parameterIndex);
 
-          // Filtrar los parámetros que coinciden con este método (target, propertyKey)
-          // y que son de tipo "@Query"
-          method.Querys = EntitiesControll.MethodParam.filter(
-            (param) =>
-              param.type === "@Query" &&
-              param.propertyKey === methodName &&
-              param.target === obj.prototype
-          );
+            method.Params.map(param => {
+              if(param.type === "@Param") {
+                method.FullPath = method.FullPath + `/:${param.paramKey}`
+              }
+            })
 
             // Format for console output
             let phrase = `
                         ${chalk.green('Method:')} ${chalk.blue(methodName)}
                         ${chalk.green('HTTP Method:')} ${chalk.yellow(httpMethod)}
-                        ${chalk.green('Full Path:')} ${chalk.yellow(controllPath + routeMethod)}
-                        ${chalk.green('Querys:')} ${chalk.magenta(method.Querys.map(param => {
-                          return `@Querys ${param.paramKey}`
-                        }).join(', '))}
+                        ${chalk.green('Full Path:')} ${chalk.yellow(method.FullPath)}
                         ${chalk.green('Params:')} ${chalk.magenta(method.Params.map(param => {
-                          return `@Param ${param.paramKey}`
+                          return `${param.type} ${param.paramKey} I ${param.parameterIndex}`
                         }).join(', '))}
             `;
             buildedOutput.push(phrase);
@@ -201,5 +191,9 @@ export class EntitiesControll {
                     )}
             `);
     });
+  }
+
+  public static genrateFullRouteWithParams() {
+
   }
 }

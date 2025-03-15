@@ -18,7 +18,7 @@ class MainController {
 @Route("/Ruta")
 class Prueba {
     @Post("/HelloWorld2")
-    getSaludo(@Param("name") name: string, @Query("data") data: string, @Body body: string) {
+    getSaludo(@Param("name") name: string, @Query("data") data: string, @Body body: string, @Param("name2") name2: string) {
         console.log(name);
         console.log(data);
         console.log(body);
