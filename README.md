@@ -1,9 +1,9 @@
-# Beehive.TS
-![](assets/Beehive_logo.png)
+# LinceTS
+![](assets/Logo.svg)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Version](https://img.shields.io/badge/version-0.0.1-blue.svg)](https://github.com/CoderAnchel/Beehive.TS)
 
-Beehive is a modern TypeScript-based backend framework built on top of Node.js, inspired by the best features of NestJS and Spring Boot. Designed specifically for microservices and distributed systems, it aims to provide a scalable, efficient, and developer-friendly foundation for building cloud-native applications.
+Lince is a modern TypeScript-based backend framework built on top of Node.js, inspired by the best features of NestJS and Spring Boot. Designed specifically for microservices and distributed systems, it aims to provide a scalable, efficient, and developer-friendly foundation for building cloud-native applications.
 
 ## 🚀 Features
 
@@ -101,4 +101,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📊 Project Status
 
-Beehive.TS is currently in early development (v0.0.1). APIs might change as we progress toward a stable release.
+LinceTS is currently in early development (v0.0.1). APIs might change as we progress toward a stable release.
