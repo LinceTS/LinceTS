@@ -63,22 +63,22 @@ export class Logger {
 
                 if (statusCode >= 100 && statusCode < 200) {
                     // Respuestas informativas (1xx) - Azul claro
-                    beehiveLogo = chalk.black.bgYellow.bold(" BEEHIVE ");
+                    beehiveLogo = chalk.black.bgYellow.bold(" LINCE ");
                 } else if (statusCode >= 200 && statusCode < 300) {
                     // Respuestas exitosas (2xx) - Verde
-                    beehiveLogo = chalk.white.bgGreen.bold(" BEEHIVE ");
+                    beehiveLogo = chalk.white.bgGreen.bold(" LINCE ");
                 } else if (statusCode >= 300 && statusCode < 400) {
                     // Redirecciones (3xx) - Amarillo
-                    beehiveLogo = chalk.white.bgBlue.bold(" BEEHIVE ");
+                    beehiveLogo = chalk.white.bgBlue.bold(" LINCE ");
                 } else if (statusCode >= 400 && statusCode < 500) {
                     // Errores del cliente (4xx) - Rojo
-                    beehiveLogo = chalk.white.bgRed.bold(" BEEHIVE ");
+                    beehiveLogo = chalk.white.bgRed.bold(" LINCE ");
                 } else if (statusCode >= 500 && statusCode < 600) {
                     // Errores del servidor (5xx) - Magenta
-                    beehiveLogo = chalk.white.bgMagenta.bold(" BEEHIVE ");
+                    beehiveLogo = chalk.white.bgMagenta.bold(" LINCE ");
                 } else {
                     // Por defecto o código desconocido - Azul
-                    beehiveLogo = chalk.white.bgBlue.bold(" BEEHIVE ");
+                    beehiveLogo = chalk.white.bgBlue.bold(" LINCE ");
                 }
 
                 return `${beehiveLogo}${chalk.blue.bgWhite.bold(

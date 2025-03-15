@@ -1,7 +1,7 @@
 {
-	"name": "beehive.ts",
+	"name": "lince",
 	"version": "0.0.1",
-	"description": "Beehive is a modern TypeScript-based backend framework built on top of Node.js, inspired by the best features of NestJS and Spring Boot. Designed specifically for microservices and distributed systems, it aims to provide a scalable, efficient, and developer-friendly foundation for building cloud-native applications.",
+	"description": "Lince is a modern TypeScript-based backend framework built on top of Node.js, inspired by the best features of NestJS and Spring Boot. Designed specifically for microservices and distributed systems, it aims to provide a scalable, efficient, and developer-friendly foundation for building cloud-native applications.",
 	"type": "module",
 	"main": "Main.ts",
 	"scripts": {
@@ -26,10 +26,12 @@
 	},
 	"homepage": "https://github.com/CoderAnchel/Beehive.TS#readme",
 	"dependencies": {
+		"boxen": "^8.0.1",
 		"chalk": "^5.4.1",
 		"express": "^4.21.2",
 		"figlet": "^1.8.0",
 		"gradient-string": "^3.0.0",
+		"ora": "^8.2.0",
 		"reflect-metadata": "^0.2.2",
 		"tsyringe": "^4.8.0"
 	},

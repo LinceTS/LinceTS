@@ -4,7 +4,7 @@ import { Route, Get, Post, Put, Patch, Delete, Update } from "./src/common/decor
 import { Body, Param, Query } from "./src/common/decorators/ParamDecoratos";
 import "reflect-metadata";
 
-const App: Aplication = createContext(3000);
+const App: Aplication = createContext(3001);
 App.startServer();
 
 @Route("/test")
