@@ -9,8 +9,6 @@ import { EntitiesControll } from "../core/EntitiesControl";
 const linceGradient = gradient(['#FFD700', '#FF8C00', '#FF4500']);
 
 export async function startup(port: number): Promise<void> {
-  // Limpiar consola
-  console.clear();
 
   // Mostrar logo con animación
   const logo = figlet.textSync("LINCE", {

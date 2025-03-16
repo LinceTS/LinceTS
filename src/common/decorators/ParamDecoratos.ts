@@ -7,7 +7,8 @@ export interface ParamDeclaration {
   target: any,
   propertyKey: string,
   parameterIndex: number,
-  paramKey: string
+  paramKey: string,
+  object?: any
 };
 
 export function Param(paramKey: string) {
@@ -32,9 +33,12 @@ export function Query(paramKey: string) {
   };
 }
 
-export function Body(target: any, propertyKey: string, parameterIndex: number) {
-  // console.log(target);
-  // console.log(propertyKey);
-  // console.log(parameterIndex);
-  EntitiesControll.MethodParam.push({type: "@Body",target: target, propertyKey: propertyKey, parameterIndex: parameterIndex, paramKey: "BodyAt"})
-};
+export function Body(paramKey: string, object?: any) {
+  return function (target: any, propertyKey: string, parameterIndex: number) {
+    // console.log(target);
+    // console.log(propertyKey);
+    // console.log(parameterIndex);
+    EntitiesControll.MethodParam.push({type: "@Body",target: target, propertyKey: propertyKey, parameterIndex: parameterIndex, paramKey: paramKey, object: object})
+  };
+}
+

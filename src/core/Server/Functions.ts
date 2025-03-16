@@ -2,6 +2,8 @@ import { Express, Request } from "express";
 import "reflect-metadata";
 import { EntitiesControll } from "../EntitiesControl";
 import { ParamDeclaration } from "../../common/decorators/ParamDecoratos";
+import { plainToInstance } from "class-transformer";
+import { validate } from "class-validator";
 
 export function createEndpoints(Server: Express) {
   //console.log(EntitiesControll.RoutesMethods);
@@ -73,13 +75,13 @@ function createGetEndPoint(
   params: ParamDeclaration[]
 ) {
   //console.log(chalk.blue(`GET Route Created and listening at:  ${FullPath}`));
-  Server.get(FullPath, (req, res) => {
+  Server.get(FullPath, async (req, res) => {
     try {
       // Extraer parámetros en el orden correcto
       const args = extractParameters(req, params, "GET");
 
       // Verificar si hay algún parámetro undefined
-      if (args.includes(undefined)) {
+      if ((await args).includes(undefined)) {
         res.status(400).send({
           error: "Bad Request",
           message: "Missing required parameters",
@@ -89,7 +91,7 @@ function createGetEndPoint(
 
       // Para debugging
       // Llamar al método con los argumentos extraídos
-      const result = ClassInstance[MethodName](...args);
+      const result = ClassInstance[MethodName](...(await args));
       res.send(result);
     } catch (error) {
       console.error(`Error executing ${MethodName}:`, error);
@@ -106,13 +108,13 @@ function createPostEndPoint(
   params: ParamDeclaration[]
 ) {
   //console.log(chalk.blue(`POST Route Created and listening at:  ${FullPath}`));
-  Server.post(FullPath, (req, res) => {
+  Server.post(FullPath, async (req, res) => {
     try {
       // Extraer parámetros en el orden correcto
       const args = extractParameters(req, params);
 
       // Verificar si hay algún parámetro undefined
-      if (args.includes(undefined)) {
+      if ((await args).includes(undefined)) {
         res.status(400).send({
           error: "Bad Request",
           message: "Missing required parameters",
@@ -122,7 +124,7 @@ function createPostEndPoint(
 
       // Para debugging
       // Llamar al método con los argumentos extraídos
-      const result = ClassInstance[MethodName](...args);
+      const result = ClassInstance[MethodName](...(await args));
       res.send(result);
     } catch (error) {
       console.error(`Error executing ${MethodName}:`, error);
@@ -179,8 +181,13 @@ function createDeleteEndPoint(
   Server.delete(FullPath, (req, res) => {});
 }
 
-function extractParameters(req: Request, params: ParamDeclaration[], httpMethod?: string): any[] {
-  const maxIndex = params.length > 0 ? Math.max(...params.map(p => p.parameterIndex)) : -1;
+async function extractParameters(
+  req: Request,
+  params: ParamDeclaration[],
+  httpMethod?: string
+): Promise<any[]> {
+  const maxIndex =
+    params.length > 0 ? Math.max(...params.map((p) => p.parameterIndex)) : -1;
   const args: any[] = new Array(maxIndex + 1).fill(undefined);
 
   // En solicitudes GET, cualquier parámetro @Body se establece como un objeto vacío para evitar undefined
@@ -201,11 +208,13 @@ function extractParameters(req: Request, params: ParamDeclaration[], httpMethod?
         if (isGetRequest) {
           args[param.parameterIndex] = param.paramKey ? null : {};
         } else {
-          if (param.paramKey && param.paramKey !== "BodyAt") {
-            args[param.parameterIndex] = req.body?.[param.paramKey];
-          } else {
-            args[param.parameterIndex] = req.body;
+          // Convertir JSON a instancia de clase y validar
+          const instance = plainToInstance(param.object, req.body);
+          const errors = await validate(instance);
+          if (errors.length > 0) {
+            throw new Error("Validation failed");
           }
+          args[param.parameterIndex] = instance;
         }
         break;
     }
