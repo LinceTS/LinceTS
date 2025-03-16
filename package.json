@@ -28,6 +28,8 @@
 	"dependencies": {
 		"boxen": "^8.0.1",
 		"chalk": "^5.4.1",
+		"class-transformer": "^0.5.1",
+		"class-validator": "^0.14.1",
 		"express": "^4.21.2",
 		"figlet": "^1.8.0",
 		"gradient-string": "^3.0.0",

@@ -192,8 +192,4 @@ export class EntitiesControll {
             `);
     });
   }
-
-  public static genrateFullRouteWithParams() {
-
-  }
 }

@@ -36,4 +36,5 @@ export function Body(target: any, propertyKey: string, parameterIndex: number) {
   // console.log(target);
   // console.log(propertyKey);
   // console.log(parameterIndex);
+  EntitiesControll.MethodParam.push({type: "@Body",target: target, propertyKey: propertyKey, parameterIndex: parameterIndex, paramKey: "BodyAt"})
 };

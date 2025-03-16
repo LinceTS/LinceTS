@@ -10,42 +10,13 @@ App.startServer();
 @Route("/test")
 class controlador {
     @Get("/name")
-    getName(@Param("tunombre") name: string, @Query("edad") edad: number,) {
+    getName(@Param("tunombre") name: string, @Query("edad") edad: number) {
         return "Hola "+name+" Edad "+edad;
     }
-}
-@Route("/beehive")
-class MainController {
-  @Get("/HelloWorld")
-  helloWorld(@Param("name") name: string,@Query("test") test: string,  @Param("apellido") apellido: string) {
-    return `Hello ${name} ${apellido} not gonna work ${test}`;
-  }
-}
 
-@Route("/Ruta")
-class Prueba {
-    @Post("/HelloWorld2")
-    getSaludo(@Param("name") name: string, @Query("data") data: string, @Body body: string, @Param("name2") name2: string) {
-        return `Hola ${name}!`;
-    }
-
-    @Put("/HelloWorld2")
-    getSaludo2() {
-        return "Hola isma!";
-    }
-
-    @Patch("/HelloWorld2")
-    getSaludo3() {
-        return "Hola isma!";
-    }
-
-    @Delete("/HelloWorld2")
-    getSaludo4() {
-        return "Hola isma!";
-    }
-
-    @Update("/HelloWorld2")
-    getSaludo5() {
-        return "Hola isma!";
+    @Post("/name2")
+    getNamePost(@Param("tunombre") name: string, @Query("edad") edad: number, @Body data: string) {
+        console.log(data)
+        return "Hola "+name+" Edad "+edad;
     }
 }
