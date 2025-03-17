@@ -14,7 +14,7 @@ class User {
 
     @IsString()
     name: string
-}
+};
 
 @Route("/test")
 class controlador {
@@ -28,4 +28,4 @@ class controlador {
         console.log(data.name)
         return "Hola "+name+" Edad "+edad;
     }
-}
+};
