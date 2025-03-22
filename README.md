@@ -34,7 +34,7 @@ Lince is a modern TypeScript-based backend framework built on top of Node.js, in
 
 ```bash
 # NPM
-npm install beehive.ts
+npm i lince
 
 # Yarn
 yarn add beehive.ts
