@@ -21,7 +21,7 @@ Lince is a modern TypeScript-based backend framework built on top of Node.js, in
 - **Enhanced Security Defaults** 🔐 - JWT, OAuth, CSRF protection out of the box
 - **Zero-Config Scaffolding** ✅ - CLI-based automation for project generation
 -->
-- **Observability & Logging Built-in** 👀 - OpenTelemetry-based logging and tracing
+- **Observability & Logging Built-in** 👀 - Own logging and tracing
 
 ## Working On ⚠️‼️
 
