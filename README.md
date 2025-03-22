@@ -19,7 +19,6 @@ Lince is a modern TypeScript-based backend framework built on top of Node.js, in
 - **Zero-Config Scaffolding** ✅ - CLI-based automation for project generation
 -->
 - **Observability & Logging Built-in** 👀 - OpenTelemetry-based logging and tracing
-- ****
 
 ## Working On ⚠️‼️
 
