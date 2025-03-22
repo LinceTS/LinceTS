@@ -2,6 +2,9 @@
 ![](assets/Logo.svg)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Version](https://img.shields.io/badge/version-0.0.1-blue.svg)](https://github.com/CoderAnchel/Beehive.TS)
+<a href="https://www.npmjs.com/package/lince" target="_blank"><img src="https://img.shields.io/npm/v/lince.svg" alt="NPM Version" /></a>
+<a href="https://www.npmjs.com/package/lince" target="_blank"><img src="https://img.shields.io/npm/l/lince.svg" alt="Package License" /></a>
+<a href="https://www.npmjs.com/package/lince" target="_blank"><img src="https://img.shields.io/npm/dm/lince.svg" alt="NPM Downloads" /></a>
 
 Lince is a modern TypeScript-based backend framework built on top of Node.js, inspired by the best features of NestJS and Spring Boot. Designed specifically for microservices and distributed systems, it aims to provide a scalable, efficient, and developer-friendly foundation for building cloud-native applications.
 
