@@ -21,6 +21,11 @@ Lince is a modern TypeScript-based backend framework built on top of Node.js, in
 - **Observability & Logging Built-in** 👀 - OpenTelemetry-based logging and tracing
 - ****
 
+## Working On ⚠️‼️
+
+- **RPC Module with Reactive Features** 📡 - Robust RPC module with integrated reactive features for seamless communication
+- **Discovery Service for Microservices** 🔍 - Advanced service discovery mechanism for microservices architecture
+
 ## 📋 Prerequisites
 
 - Node.js (v16.x or higher)
